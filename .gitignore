@@ -1,0 +1,25 @@
+# Binaries for programs and plugins
+*.exe
+
+# Output files
+*.out
+*.test
+
+# Go specific
+*.test
+*.prof
+
+# Dependency directories
+vendor/
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+
+# Temporary directories
+tmp/
