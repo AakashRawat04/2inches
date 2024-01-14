@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - "client/**"
+  pull_request:
+    paths:
+      - "client/**"
 
 jobs:
   build:
