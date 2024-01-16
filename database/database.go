@@ -64,7 +64,7 @@ func (s *PostgresStore) GetLinks() ([]*types.Link, error) {
 
 func scanIntoLink(rows *sql.Rows) (*types.Link, error) {
 	link := new(types.Link)
-	err := rows.Scan(&link.ID, &link.LongUrl, &link.CreatedAt)
+	err := rows.Scan(&link.ID, &link.CreatedAt, &link.LongUrl)
 
 	return link, err
 }
