@@ -1,13 +1,16 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"log"
+
+	"github.com/aakashrawat04/2inches/database"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	store, err := database.NewPostgresStore()
+	if err != nil {
+		log.Fatal(err)
+	}
+	server := NewAPIServer(":8080", store)
+	server.Run()
 }

@@ -1,5 +1,9 @@
 # Binaries for programs and plugins
 *.exe
+.env
+
+# builds
+bin
 
 # Output files
 *.out
