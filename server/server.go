@@ -4,14 +4,13 @@ import (
 	"log"
 
 	"github.com/aakashrawat04/2inches/server/router"
-	"github.com/aakashrawat04/2inches/store"
 )
 
 type APIServer struct {
 	listenAddr string
 }
 
-func NewAPIServer(listenAddr string, database *store.PostgresStore) *APIServer {
+func NewAPIServer(listenAddr string) *APIServer {
 	return &APIServer{
 		listenAddr: listenAddr,
 	}
