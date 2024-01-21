@@ -4,15 +4,11 @@ import (
 	"database/sql"
 	"os"
 
-	"github.com/aakashrawat04/2inches/types"
+	model "github.com/aakashrawat04/2inches/models"
 	_ "github.com/lib/pq"
 
 	"github.com/joho/godotenv"
 )
-
-type Database interface {
-	GetLinks() ([]*types.Link, error)
-}
 
 type PostgresStore struct {
 	db *sql.DB
@@ -40,13 +36,13 @@ func NewPostgresStore() (*PostgresStore, error) {
 	}, nil
 }
 
-func (s *PostgresStore) GetLinks() ([]*types.Link, error) {
+func (s *PostgresStore) GetLinks() ([]*model.Link, error) {
 	rows, err := s.db.Query("SELECT * FROM links")
 	if err != nil {
 		return nil, err
 	}
 
-	links := []*types.Link{}
+	links := []*model.Link{}
 
 	for rows.Next() {
 		link, err := scanIntoLink(rows)
@@ -62,8 +58,8 @@ func (s *PostgresStore) GetLinks() ([]*types.Link, error) {
 	return links, nil
 }
 
-func scanIntoLink(rows *sql.Rows) (*types.Link, error) {
-	link := new(types.Link)
+func scanIntoLink(rows *sql.Rows) (*model.Link, error) {
+	link := new(model.Link)
 	err := rows.Scan(&link.ID, &link.CreatedAt, &link.LongUrl)
 
 	return link, err
