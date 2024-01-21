@@ -3,14 +3,15 @@ package main
 import (
 	"log"
 
-	"github.com/aakashrawat04/2inches/database"
+	"github.com/aakashrawat04/2inches/server"
+	"github.com/aakashrawat04/2inches/store"
 )
 
 func main() {
-	store, err := database.NewPostgresStore()
+	store, err := store.NewPostgresStore()
 	if err != nil {
 		log.Fatal(err)
 	}
-	server := NewAPIServer(":8080", store)
+	server := server.NewAPIServer(":8080", store)
 	server.Run()
 }

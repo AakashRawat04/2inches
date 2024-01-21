@@ -1,4 +1,4 @@
-package types
+package model
 
 type Link struct {
 	ID        int    `json:"id"`
