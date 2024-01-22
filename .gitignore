@@ -24,6 +24,7 @@ vendor/
 
 # Temporary files
 *.tmp
+.DS_Store
 
 # Temporary directories
 tmp/
