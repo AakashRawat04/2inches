@@ -59,4 +59,6 @@ func main() {
 	if err := goose.RunContext(context.TODO(), command, db, *dir, arguments...); err != nil {
 		log.Fatalf("goose %v: %v", command, err)
 	}
+
+	print("Migration Successful\n")
 }
