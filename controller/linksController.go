@@ -23,5 +23,7 @@ func (l *LinksController) GetLinks(c *gin.Context) {
 		})
 		return
 	}
-	c.JSON(200, links)
+	c.JSON(200, gin.H{
+		"links": links,
+	})
 }
