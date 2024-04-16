@@ -24,7 +24,7 @@ func (l *LinkStorage) CreateLink(link *models.CreateLinkRequest) (*string, error
 		}
 		link.ShortCode = id
 	}
-	_, err := l.db.Exec("INSERT INTO links (user_id, long_url, expires_at) VALUES ($1, $2, $3)", link.UserID, link.LongURL, link.ExpiresAt)
+	_, err := l.db.Exec("INSERT INTO links (user_id, long_url, expires_at, short_code) VALUES ($1, $2, $3, $4)", link.UserID, link.LongURL, link.ExpiresAt, link.ShortCode)
 	if err != nil {
 		return nil, err
 	}
