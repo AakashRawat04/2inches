@@ -50,3 +50,31 @@ func (l *LinksController) CreateLink(c *gin.Context) {
 		"short_code": shortCode,
 	})
 }
+
+func (l *LinksController) GetLinksByUser(c *gin.Context) {
+	userID := c.Param("userid")
+	links, err := l.storage.GetAllLinksByUserId(userID)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"links": links,
+	})
+}
+
+func (l *LinksController) GetLinkByShortCode(c *gin.Context) {
+	shortCode := c.Param("short_code")
+	link, err := l.storage.GetLinkByShortCode(shortCode)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"link": link,
+	})
+}

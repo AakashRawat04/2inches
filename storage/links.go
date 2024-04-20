@@ -40,11 +40,20 @@ func (l *LinkStorage) GetLinks() (*[]*models.Link, error) {
 	return &links, nil
 }
 
-func (l *LinkStorage) GetAllLinksByUserId(id int) (*[]*models.Link, error) {
+func (l *LinkStorage) GetAllLinksByUserId(id string) (*[]*models.Link, error) {
 	links := []*models.Link{}
 	err := l.db.Select(&links, "SELECT * FROM links WHERE user_id = $1", id)
 	if err != nil {
 		return nil, err
 	}
 	return &links, nil
+}
+
+func (l *LinkStorage) GetLinkByShortCode(shortCode string) (*models.Link, error) {
+	link := models.Link{}
+	err := l.db.Get(&link, "SELECT * FROM links WHERE short_code = $1", shortCode)
+	if err != nil {
+		return nil, err
+	}
+	return &link, nil
 }
