@@ -78,3 +78,57 @@ func (l *LinksController) GetLinkByShortCode(c *gin.Context) {
 		"link": link,
 	})
 }
+
+func (l *LinksController) GetActiveLinksByUser(c *gin.Context) {
+	userID := c.Param("userid")
+	links, err := l.storage.GetActiveLinksByUserId(userID)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"links": links,
+	})
+}
+
+func (l *LinksController) GetDisabledLinksByUser(c *gin.Context) {
+	userID := c.Param("userid")
+	links, err := l.storage.GetDisabledLinksByUserId(userID)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"links": links,
+	})
+}
+
+func (l *LinksController) GetArchivedLinksByUser(c *gin.Context) {
+	userID := c.Param("userid")
+	links, err := l.storage.GetArchivedLinksByUserId(userID)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"links": links,
+	})
+}
+
+func (l *LinksController) DisableLink(c *gin.Context) {
+	shortCode := c.Param("short_code")
+	err := l.storage.DisableLink(shortCode)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{})
+}

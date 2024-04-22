@@ -5,9 +5,8 @@ import (
 )
 
 type Link struct {
-	ID        int       `json:"id" db:"id"`
-	LongURL   string    `json:"long_url" db:"long_url"`
 	ShortCode string    `json:"short_code" db:"short_code"`
+	LongURL   string    `json:"long_url" db:"long_url"`
 	Clicks    int       `json:"clicks" db:"clicks"`
 	Active    bool      `json:"active" db:"active"`
 	UserID    string    `json:"user_id" db:"user_id"`
